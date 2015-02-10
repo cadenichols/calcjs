@@ -1,1 +1,3 @@
-# prototype
+# CalcJS
+
+A simple calculator.
