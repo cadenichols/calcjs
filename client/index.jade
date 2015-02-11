@@ -2,7 +2,61 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Prototype
+    title CalcJS
+    link(rel='stylesheet', href='/style.css')
   body
-    h1 Hello, World
+    h3 CalcJS &copy;
+    table
+      tr
+        td(colspan='5')
+          input#dis(type = 'text', value = '0')
+        td
+          span#currOp
+      tr
+        td 
+          button.num#7 7
+        td 
+          button.num#8 8
+        td 
+          button.num#9 9
+        td 
+          button.operator#plus +
+        td
+          button#clear C
+      tr
+        td 
+          button.num#4 4
+        td 
+          button.num#5 5
+        td 
+          button.num#6 6
+        td 
+          button.operator#minus -
+        td
+          button#root √ 
+          
+      tr
+        td 
+          button.num#1 1
+        td 
+          button.num#2 2
+        td 
+          button.num#3 3
+        td 
+          button.operator#mult &times;
+        td
+          button.operator#power x^y
+      tr
+        td 
+          button.num#0 0
+        td 
+          button#decimal .
+        td 
+          button#invert &plusmn;
+        td 
+          button.operator#divide &divide;
+        td
+          button#equals =
+
     script(src='/vendor/jquery/dist/jquery.js')
+    script(src='/main.js')
