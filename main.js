@@ -13,7 +13,6 @@ function init() {
     if (code >= 48 && code <= 57) {
       $('#' + String.fromCharCode(code)).click();
     } else {
-      console.log(code);
       switch (code) {
         case 46: id = '#period'; break;
         case 47: id = '#divide'; break;
