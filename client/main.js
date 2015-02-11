@@ -57,13 +57,7 @@ function init() {
   });
 
   $('#invert').on('click', function() {
-    var currVal = $('#dis').val();
-    if (currVal[0] === '-') {
-      currVal = currVal.slice (1, currVal.length);
-    } else {
-      currVal = '-' + currVal;
-    }
-    $('#dis').val(currVal);
+    $('#dis').val($('#dis').val() * -1);
   });
 
   $('#root').on('click', function() {
