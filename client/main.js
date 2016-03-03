@@ -5,9 +5,13 @@ var toBeCleared = false;
 var operator;
 var operand;
 
+var $display;
+
 $(document).ready(init);
 
 function init() {
+  $display = $('#dis');
+
   $(document).keypress(keyPressed);
   $('.num').on('click', numClicked);
   $('.operator').on('click', operatorClicked);
@@ -19,17 +23,20 @@ function init() {
 }
 
 function numClicked() {
-  if (($('#dis').val() === '0') || toBeCleared) { // Replace zero with first input
+  var currVal = parseFloat($display.val());
+  var clickedNum = $(this).text();
+
+  if (currVal === 0 || toBeCleared) { // Replace zero with first input
     toBeCleared = false;
-    $('#dis').val($(this).attr('id'));
+    $display.val(clickedNum);
   } else {                                         // Concat new digit
-    $('#dis').val($('#dis').val().concat($(this).attr('id')));
+    $display.val(currVal + clickedNum);
   }
 }
 
 function operatorClicked() {
   if (isOperating) {
-    $('#dis').val(evaluate());
+    $display.val(evaluate());
   }
   switch ($(this).attr('id')) {
     case 'plus':    operator = '+'; break;
@@ -38,44 +45,44 @@ function operatorClicked() {
     case 'divide':  operator = '÷'; break;
     case 'power':   operator = '^'; break;
   }
-  operand = parseFloat($('#dis').val());
+  operand = parseFloat($display.val());
   isOperating = true;
   toBeCleared = true;
   $('#currOp').text(operator);
 }
 
 function invertClicked() {
-  $('#dis').val($('#dis').val() * -1);
+  $display.val($display.val() * -1);
 }
 
 function rootClicked() {
-  $('#dis').val(Math.sqrt(evaluate()));
+  $display.val(Math.sqrt(evaluate()));
 }
 
 function decimalClicked() {
   if (toBeCleared) {
-    $('#dis').val('0.');
+    $display.val('0.');
     toBeCleared = false;
   } else {
     if (!isFloating) {
-      $('#dis').val($('#dis').val().concat('.'));
+      $display.val($display.val().concat('.'));
     }
   }
   isFloating = true;
 }
 
 function equalsClicked() {
-  $('#dis').val(evaluate());
+  $display.val(evaluate());
   reset();
 }
 
 function clearClicked() {
   reset();
-  $('#dis').val('0');
+  $display.val('0');
 }
 
 function evaluate() {  // Evaluates displayed value with operator on operand
-  var currVal = parseFloat($('#dis').val());
+  var currVal = parseFloat($display.val());
   var result;
   switch (operator) {
     case '+': result = operand + currVal; break;
